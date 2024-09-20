@@ -1,0 +1,11 @@
+SNMPv3
+Pedro Rafael Muñoz Barrero 
+UMNG - Gestión de Red
+
+Introducción a SNMPv3
+SNMPv3 es un protocolo de la capa de aplicación que facilita el intercambio de información de gestión entre dispositivos de red. Es parte del conjunto de protocolos TCP/IP y se utiliza ampliamente en redes empresariales1.
+
+Componentes Básicos
+Agentes: Son componentes de software que se ejecutan en los dispositivos a gestionar.
+Gestores: Son componentes de software que se ejecutan en los sistemas de gestión de red.
+MIB (Management Information Base): Es una base de datos que contiene la información de gestión de la red
