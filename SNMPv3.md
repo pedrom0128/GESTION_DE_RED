@@ -1,6 +1,6 @@
 # SNMPv3
 
-## Pedro Rafael Muñoz Barrero UMNG - TEC - Gestión de Red
+## Pedro Muñoz - Santiago Gonzalez UMNG - TEC - Gestión de Red
 
 ## Introducción a SNMPv3:
 
