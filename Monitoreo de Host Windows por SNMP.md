@@ -84,6 +84,31 @@ Espera la conexión del Servidor al Host y viceversa.
 
 ![image](https://github.com/user-attachments/assets/f890b5fb-8dac-44b8-adf2-f088dc175c30)
 
+## c. Monitoreo de dos variables mediante SNMP desde Zabbix a un host Windows
+
+### Primer Paso
+
+Ingresa a los gráficos del Host que se va a monitorear.
+
+![image](https://github.com/user-attachments/assets/010afadd-aa01-45d7-8d87-2d0d6cdb732a)
+
+### Segundo Paso
+
+Allí se encuentran las estadísticas y el monitoreo que está haciendo Zabbix mediante el protocolo SNMP.
+
+![image](https://github.com/user-attachments/assets/99790b20-5d45-4f42-84aa-620aec7c3496)
+
+### Tercer Paso
+
+Escoge dos variables las cuales deseas monitorear y realizar las pruebas pertinentes, en este caso particular, se selecciona el almacenamiento y la tarjeta de red. 
+
+![image](https://github.com/user-attachments/assets/a5149268-6ad3-4fad-b4b0-6de559333ced)
+
+![image](https://github.com/user-attachments/assets/5b56cacf-738a-4bad-910d-5484936787d6)
+
+
+
+
 
 
 
