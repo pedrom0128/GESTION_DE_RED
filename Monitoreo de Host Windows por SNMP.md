@@ -154,6 +154,17 @@ Verifica que el host nuevamente se haya incorporado y pueda volver a ser monitor
 
 ## Conclusiones
 
+Eficiencia de Monitoreo: La implementación del protocolo SNMP desde Zabbix hacia el host Windows ha demostrado ser altamente eficiente, permitiendo una recopilación de datos precisa y en tiempo real de las variables monitorizadas.
+
+Compatibilidad y Configuración: La configuración inicial tanto del servidor Zabbix como del host Windows fue crucial. La instalación y configuración correcta del agente SNMP en el host Windows garantizó una comunicación fluida entre ambos sistemas.
+
+Resiliencia del Sistema: Durante las pruebas, el sistema mostró una alta resiliencia y capacidad de adaptarse a diferentes escenarios, lo que refuerza la estabilidad y confiabilidad de la solución propuesta.
+
+Identificación de Problemas: El proceso de monitoreo permitió la identificación temprana de posibles fallos o ineficiencias en el host Windows.
+
+Optimización de Recursos: La utilización de SNMP para el monitoreo desde Zabbix optimizó los recursos del sistema, reduciendo la carga operativa y mejorando la eficiencia global del monitoreo.
+
+Documentación y Soporte: La documentación detallada de cada paso del proceso, desde la configuración inicial hasta la resolución de problemas, es esencial para futuras implementaciones y soporte continuo.
 
 
 
