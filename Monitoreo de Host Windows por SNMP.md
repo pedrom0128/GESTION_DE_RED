@@ -130,6 +130,35 @@ Dirígete al host y realiza el protocolo de prueba para la tarjeta de red, desha
 
 ### Segundo Paso
 
+Revisa en las gráficas lo que sucede con la tarjeta de red y como consecuencia se obtiene que no hay tráfico debido a que se encuentra deshabilitada.
+
+![image](https://github.com/user-attachments/assets/000b0ff5-d954-425a-aa71-6009b1553f6d)
+
+### Tercer Paso
+
+Como consecuencia también el host se cae debido que se encuentra conectado y en comunicación sobre la dirección IP que cuenta el equipo por ello, en el servidor Zabbix se encuentra deshabilitado.
+
+![image](https://github.com/user-attachments/assets/0d4ad5aa-3fa0-4a62-aa84-5dbd4c7b4c7d)
+
+### Cuarto Paso
+
+Procede a habilitar nuevamente la tarjeta de red para que vuelva a haber conexión con el servidor.
+
+![image](https://github.com/user-attachments/assets/5e2b0528-cfa1-4e67-98e6-2526b01bb45d)
+
+### Quinto Paso
+
+Verifica que el host nuevamente se haya incorporado y pueda volver a ser monitoreado por medio del protocolo SNMP.
+
+![image](https://github.com/user-attachments/assets/af5653f8-7ef0-4ed6-9224-35f0eb587f74)
+
+## Conclusiones
+
+
+
+
+
+
 
 
 
