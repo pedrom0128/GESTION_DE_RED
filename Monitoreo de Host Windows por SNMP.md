@@ -106,8 +106,29 @@ Escoge dos variables las cuales deseas monitorear y realizar las pruebas pertine
 
 ![image](https://github.com/user-attachments/assets/5b56cacf-738a-4bad-910d-5484936787d6)
 
+## d. Envío de Alerta de Falla
 
+### Primer Paso
 
+Realiza una saturación de alguna variable para forzar una falla.
+
+![image](https://github.com/user-attachments/assets/4b28e050-5e6e-403a-8683-3205c62c2678)
+
+### Segundo Paso
+
+En el correo registrado, llegará la información de la falla con lo que está sucediendo.
+
+![image](https://github.com/user-attachments/assets/721b6bb2-9b8d-4e85-9fa8-c2d8cf8563fa)
+
+## e. Protocolo de Prueba de las dos Variables Monitoreadas
+
+### Primer Paso
+
+Dirígete al host y realiza el protocolo de prueba para la tarjeta de red, deshabilitándola y forzando una falla.
+
+![image](https://github.com/user-attachments/assets/60f906eb-173d-4085-b186-ae58ef6268e9)
+
+### Segundo Paso
 
 
 
