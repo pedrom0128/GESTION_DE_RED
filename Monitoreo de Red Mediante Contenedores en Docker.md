@@ -32,7 +32,6 @@ docker network create
 --ip-range 172.20.240.0/20
 ```
 
-
 Restringe el rango de direcciones IP que se asignarán dinámicamente a los contenedores en esta red.
 
 172.20.240.0/20: Este rango es más pequeño que la subred principal y permite 4,096 direcciones IP (de 172.20.240.1 a 172.20.255.254).
@@ -53,6 +52,41 @@ docker run --name mysql-server -t ^
              --character-set-server=utf8 --collation-server=utf8_bin ^
              --default-authentication-plugin=mysql_native_password
 ```
+2.1 Ejecuta un nuevo contenedor basado en la imagen especificada (en este caso, MySQL 8.0 de Oracle).
+```bash
+docker run
+```
+2.2 Asigna un nombre al contenedor: mysql-server. Esto facilita su identificación y gestión, por ejemplo, con comandos como docker stop mysql-server.
+```bash
+--name mysql-server
+```
+2.3 Asocia un pseudo-TTY al contenedor. Aunque este parámetro no es esencial para una base de datos, puede ser útil para depuración o ejecución interactiva.
+```bash
+--name mysql-server
+```
+2.4 Definición de variables de entorno
+
+Se utilizan para configurar el servidor MySQL:
+
+- MYSQL_DATABASE="zabbix": Crea automáticamente una base de datos llamada zabbix al iniciar el contenedor.
+
+- MYSQL_USER="zabbix": Crea un usuario con el nombre zabbix.
+
+- MYSQL_PASSWORD="zabbix_pwd": Establece la contraseña del usuario zabbix como zabbix_pwd.
+
+- MYSQL_ROOT_PASSWORD="root_pwd": Establece la contraseña del usuario root (administrador) como root_pwd.
+
+2.5 Conecta este contenedor a la red zabbix-net. Esto permite que otros contenedores en la misma red (como el servidor de Zabbix) puedan comunicarse directamente con este servidor MySQL.
+```bash
+--network=zabbix-net
+```
+2.6 Configura la política de reinicio del contenedor. Este ajuste asegura que:
+```bash
+--network=zabbix-net
+```
+- Si el contenedor falla o el servidor Docker se reinicia, el contenedor se reiniciará automáticamente.
+
+- No se reiniciará si lo detienes manualmente (con docker stop).
 
 3. Iniciar la instancia de la puerta de enlace Java de Zabbix
 
@@ -62,6 +96,43 @@ docker run --name zabbix-java-gateway -t ^
              --restart unless-stopped ^
              -d zabbix/zabbix-java-gateway:alpine-7.0-latest
 ```
+3.1 Inicia un nuevo contenedor basado en una imagen de Docker especificada.
+```bash
+docker run
+```
+3.2 Asigna el nombre zabbix-java-gateway al contenedor, lo que facilita su identificación y gestión con comandos como docker logs zabbix-java-gateway.
+```bash
+--name zabbix-java-gateway
+```
+3.3 Asocia un pseudo-TTY al contenedor. Aunque no es crítico en este caso, puede ser útil para tareas interactivas o depuración.
+```bash
+-t
+```
+3.4 Conecta este contenedor a la red Docker llamada zabbix-net. Esto permite que otros contenedores en la misma red (como el servidor Zabbix y la base de datos) se comuniquen fácilmente con este Java Gateway.
+```bash
+--network=zabbix-net
+```
+3.5 Establece la política de reinicio del contenedor. Esto asegura que:
+
+- El contenedor se reiniciará automáticamente si falla o si el servidor Docker se reinicia.
+  
+- No se reiniciará automáticamente si lo detienes manualmente (con docker stop).
+
+```bash
+--restart unless-stopped
+```
+3.6 Ejecuta el contenedor en segundo plano (modo "detached"), dejando la terminal libre para otros comandos.
+```bash
+-d
+```
+3.7 Especifica la imagen de Docker que se usará para crear el contenedor:
+
+```bash
+zabbix/zabbix-java-gateway:alpine-7.0-latest
+```
+- zabbix/zabbix-java-gateway: Es la imagen oficial de Zabbix para el Java Gateway.
+
+- alpine-7.0-latest: Es una versión optimizada y ligera de la imagen basada en Alpine Linux, diseñada para Zabbix 7.0.
 
 4. Inicie la instancia del servidor Zabbix y vincule la instancia con la instancia del servidor MySQL creada
 
