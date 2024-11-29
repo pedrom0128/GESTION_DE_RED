@@ -3,6 +3,8 @@ Pedro Rafael Muñoz Barrero - Santiago Gonzalez Escobar
 
 ## Introducción
 
+
+
 ## Pasos de Instalación
 
 El ejemplo demuestra cómo ejecutar el servidor Zabbix con soporte de base de datos MySQL, la interfaz web Zabbix basada en el servidor web Nginx y la puerta de enlace Java Zabbix.
@@ -69,3 +71,8 @@ docker run --name zabbix-web-nginx-mysql -t ^
              -d zabbix/zabbix-web-nginx-mysql:alpine-7.0-latest
 ```
 
+## Contenedores creados 
+![image](https://github.com/user-attachments/assets/ffcfc9ec-54d8-4513-b729-85274cd262a1)
+
+## Zabbix 
+![image](https://github.com/user-attachments/assets/eeefb6b7-65f9-4584-b876-87bde7570cd7)
