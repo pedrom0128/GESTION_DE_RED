@@ -14,6 +14,30 @@ El ejemplo demuestra cómo ejecutar el servidor Zabbix con soporte de base de da
 ```bash
 docker network create --subnet 172.20.0.0/16 --ip-range 172.20.240.0/20 zabbix-net
 ```
+1.1 Crea una nueva red en Docker
+```bash
+docker network create
+```
+1.2 Define la subred completa que será utilizada por la red zabbix-net.
+```bash
+--subnet 172.20.0.0/16
+```
+172.20.0.0/16: Especifica un rango de direcciones IP, donde:
+    
+   - El prefijo 172.20.0.0 es el inicio del rango.
+   - /16 indica que se usarán los primeros 16 bits como la parte de la red, permitiendo hasta 65,536 direcciones IP (de 172.20.0.1 a 172.20.255.254).
+     
+1.3 Restringe el rango de direcciones IP que se asignarán dinámicamente a los contenedores en esta red.
+```bash
+--ip-range 172.20.240.0/20
+```
+
+
+Restringe el rango de direcciones IP que se asignarán dinámicamente a los contenedores en esta red.
+
+172.20.240.0/20: Este rango es más pequeño que la subred principal y permite 4,096 direcciones IP (de 172.20.240.1 a 172.20.255.254).
+
+Esto significa que la red puede manejar una subred más grande, pero las IPs asignadas a los contenedores estarán limitadas al rango definido por --ip-range.
 
 2. Iniciar una instancia de servidor MySQL vacía.
    
