@@ -149,6 +149,57 @@ docker run --name zabbix-server-mysql -t ^
             --restart unless-stopped ^
             -d zabbix/zabbix-server-mysql:alpine-7.0-latest
 ```
+4.1 Inicia un nuevo contenedor basado en la imagen especificada (Zabbix Server con soporte para MySQL).
+```bash
+docker run
+```
+4.2 Asigna el nombre zabbix-server-mysql al contenedor, facilitando su identificación y administración.
+```bash
+--name zabbix-server-mysql
+```
+4.3 Asocia un pseudo-TTY al contenedor, lo que puede ser útil para tareas interactivas o de depuración, aunque no es esencial en este caso.
+```bash
+-t
+```
+4.4 Definición de variables de entorno
+```bash
+-e
+```
+- DB_SERVER_HOST="mysql-server": Especifica el nombre o dirección del servidor MySQL. En este caso, apunta al contenedor mysql-server en la red zabbix-net.
+
+- MYSQL_DATABASE="zabbix": Define el nombre de la base de datos MySQL a la que se conectará Zabbix. Debe coincidir con la configuración del contenedor MySQL.
+
+- MYSQL_USER="zabbix": Usuario de MySQL utilizado por Zabbix para conectarse a la base de datos.
+
+- MYSQL_PASSWORD="zabbix_pwd": Contraseña para el usuario zabbix.
+
+- MYSQL_ROOT_PASSWORD="root_pwd": Contraseña del usuario administrador (root) de MySQL.
+
+- ZBX_JAVAGATEWAY="zabbix-java-gateway": Especifica el nombre del contenedor donde se ejecuta el Zabbix Java Gateway, que permite monitorear aplicaciones Java vía JMX.
+
+4.5 Conecta este contenedor a la red zabbix-net, permitiendo que el servidor Zabbix se comunique con:
+
+- El servidor MySQL (mysql-server).
+  
+- El Java Gateway (zabbix-java-gateway).
+```bash
+--network=zabbix-net
+```
+4.6 Publica el puerto 10051 del contenedor en el host, permitiendo que los agentes Zabbix y otros sistemas accedan al servidor Zabbix desde fuera del contenedor.
+```bash
+-p 10051:10051
+```
+4.7 Ejecuta el contenedor en segundo plano (modo "detached"), liberando la terminal para otros comandos.
+```bash
+-d
+```
+4.8 Especifica la imagen de Docker que se usará para crear el contenedor:
+```bash
+zabbix/zabbix-server-mysql:alpine-7.0-latest
+```
+- zabbix/zabbix-server-mysql: Es la imagen oficial de Zabbix Server con soporte para bases de datos MySQL.
+
+- alpine-7.0-latest: Es una versión ligera de la imagen basada en Alpine Linux, optimizada para Zabbix 7.0.
 
 5. Inicie la interfaz web de Zabbix y vincule la instancia con el servidor MySQL creado y las instancias del servidor Zabbix
 
