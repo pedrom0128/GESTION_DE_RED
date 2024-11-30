@@ -3,7 +3,9 @@ Pedro Rafael Muñoz Barrero - Santiago Gonzalez Escobar
 
 ## Introducción
 
+En el presente informe se documenta de manera detallada el proceso de contenerización de la plataforma de monitoreo Zabbix utilizando Docker, una herramienta de virtualización ligera que facilita la creación, implementación y gestión de aplicaciones en contenedores. El objetivo principal de este proyecto es implementar un entorno funcional y escalable de Zabbix, compuesto por sus diferentes componentes (servidor, base de datos, gateway Java e interfaz web), asegurando una integración eficiente y simplificando la administración del sistema mediante la tecnología de contenedores.
 
+A lo largo del informe, se presentan de forma estructurada los pasos seguidos para configurar cada contenedor, explicando los comandos utilizados, las variables de entorno definidas y las configuraciones aplicadas. Asimismo, se incluyen evidencias visuales (como capturas de pantalla y salidas de comandos) que respaldan el correcto funcionamiento del sistema implementado. Este documento no solo sirve como guía técnica para la implementación de Zabbix en un entorno contenerizado, sino que también destaca los beneficios de utilizar Docker en la gestión de aplicaciones complejas como esta.
 
 ## Pasos de Instalación
 
@@ -216,9 +218,58 @@ docker run --name zabbix-web-nginx-mysql -t ^
              --restart unless-stopped ^
              -d zabbix/zabbix-web-nginx-mysql:alpine-7.0-latest
 ```
+5.1 Asigna el nombre zabbix-web-nginx-mysql al contenedor, lo que facilita su identificación y gestión.
+```bash
+--name zabbix-web-nginx-mysql
+```
+5.2 Estas variables configuran la interfaz web de Zabbix y su conexión con la base de datos y el servidor Zabbix:
+
+- ZBX_SERVER_HOST="zabbix-server-mysql": Especifica la dirección del servidor Zabbix al que se conectará la interfaz web. En este caso, apunta al contenedor zabbix-server-mysql dentro de la red Docker.
+
+- DB_SERVER_HOST="mysql-server": Especifica la dirección del servidor MySQL que almacena la base de datos de Zabbix. Aquí apunta al contenedor mysql-server.
+
+- MYSQL_DATABASE="zabbix": Define el nombre de la base de datos de Zabbix en MySQL.
+
+- MYSQL_USER="zabbix": Especifica el usuario de MySQL que será utilizado por la interfaz web para conectarse a la base de datos.
+
+- MYSQL_PASSWORD="zabbix_pwd": Define la contraseña del usuario zabbix en MySQL.
+
+- MYSQL_ROOT_PASSWORD="root_pwd": Contraseña del usuario administrador (root) de MySQL.
+
+5.3 Publica el puerto 8080 del contenedor en el puerto 80 del host. Esto permite que la interfaz web de Zabbix sea accesible desde un navegador en el puerto 80 del servidor (usualmente utilizado para HTTP).
+
+Puertos involucrados:
+
+- 8080: Puerto interno del contenedor donde Nginx sirve la interfaz web.
+
+- 80: Puerto en el host donde los usuarios accederán a la interfaz web (por ejemplo, http://localhost).
+```bash
+-p 80:8080
+```
+5.4 Configura la política de reinicio del contenedor para que:
+```bash
+--restart unless-stopped
+```
+- Se reinicie automáticamente si falla o si el servidor Docker se reinicia.
+
+- No se reinicie automáticamente si se detiene manualmente (docker stop).
+
+5.5 Especifica la imagen de Docker que se usará para crear el contenedor:
+
+```bash
+zabbix/zabbix-web-nginx-mysql:alpine-7.0-latest
+```
+
+- zabbix/zabbix-web-nginx-mysql: Es la imagen oficial de la interfaz web de Zabbix que utiliza
+
+- Nginx como servidor web y MySQL como base de datos.
+alpine-7.0-latest: Es una versión ligera basada en Alpine Linux, optimizada para Zabbix 7.0.
 
 ## Contenedores creados 
 ![image](https://github.com/user-attachments/assets/ffcfc9ec-54d8-4513-b729-85274cd262a1)
 
 ## Zabbix 
 ![image](https://github.com/user-attachments/assets/eeefb6b7-65f9-4584-b876-87bde7570cd7)
+
+## Conclusiones
+La contenerización de Zabbix utilizando Docker demostró ser un enfoque eficiente para desplegar y gestionar esta herramienta de monitoreo. En conclusión, Docker se posiciona como una herramienta clave para desplegar aplicaciones como Zabbix, permitiendo a los administradores de sistemas aprovechar las ventajas de la contenerización para simplificar el manejo de infraestructuras críticas de monitoreo. Este enfoque no solo optimiza los recursos disponibles, sino que también asegura una mayor portabilidad y consistencia en los despliegues.
